@@ -153,6 +153,8 @@ while True:
                         i.visited = True
                         i.prev = current
                         queue.append(i)
+        else:
+            break
 
     # Set the screen background
     screen.fill(WHITE)
@@ -175,4 +177,6 @@ while True:
                 # pygame.draw.circle(screen, WHITE, (column * WIDTH + WIDTH // 2, row * HEIGHT + HEIGHT // 2), WIDTH // 3)
 
     pygame.display.flip()
+
+print("Could Not Find Shortest Path: Way is Blocked")
 
