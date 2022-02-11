@@ -17,13 +17,15 @@ BLUE = (0, 0, 255)
 MARGIN = 0
 
 # Set the COLUMNS and ROWS of the screen
-COLUMNS, ROWS = 64, 48
+COLUMNS, ROWS = 53, 30
 # This sets the WIDTH and HEIGHT of each grid location
-WINDOW_SIZE = [GAME_WIDTH, GAME_HEIGHT] = [640, 480]
+WINDOW_SIZE = [GAME_WIDTH, GAME_HEIGHT] = [530, 300]
 WIDTH, HEIGHT = GAME_WIDTH // COLUMNS, GAME_HEIGHT // ROWS
 
 # Set the HEIGHT and WIDTH of the screen
 screen = pygame.display.set_mode(WINDOW_SIZE)
+
+companyLogo = pygame.image.load('/Users/rudransh/PycharmProjects/pythonProject9/companyLogo.jpeg')
 
 
 class Node:
@@ -72,7 +74,7 @@ for row in range(ROWS):
 pygame.init()
 
 # Set title of screen
-pygame.display.set_caption("Dijkstra's Visualization")
+pygame.display.set_caption("Dijkstra's Pathfinding Visualization")
 
 # Flag to Indicate Start of Implementation
 startFlag = False
@@ -89,15 +91,26 @@ def setWall(pos, isWall):
     row = pos[1] // WIDTH
     grid[row][column].wall = isWall
 
-
+# Start Location of Path
 start = grid[0][0]
 start.isStart = 1
-end = grid[29][55]
+
+# End Loctiopn of Path
+end = grid[25][25]
 end.isEnd = 1
+
+# Initializig queue to include start node
 queue.append(start)
 start.visited = True
 completionFlag = False
 
+def wait_for_key_press():
+    wait = True
+    while wait:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                wait = False
+                break
 
 # Program Starts Running Here
 
@@ -115,6 +128,12 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 startFlag = True
+            if event.key == pygame.K_q:
+                screen.blit(companyLogo, (0, 0))
+                pygame.display.update()  # needed to show the effect of the blit
+                # Bunch of other code goes here, like changing the score, etc.
+                wait_for_key_press()
+                # new_game()
 
     # Implement Dijkstra
 
