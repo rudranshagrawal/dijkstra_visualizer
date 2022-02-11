@@ -77,8 +77,8 @@ pygame.display.set_caption("Dijkstra's Visualization")
 # Flag to Indicate Start of Implementation
 startFlag = False
 
-# Loop until the user clicks the close button.
-done = False
+# Flag to Indicate Start of Completion
+completionFlag = False
 
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
@@ -99,8 +99,7 @@ start.visited = True
 completionFlag = False
 
 
-# -------- Main Program Loop -----------
-
+# Program Starts Running Here
 
 while True:
     for event in pygame.event.get():  # User did something
@@ -156,13 +155,5 @@ while True:
                 pygame.draw.rect(screen, RED, [WIDTH * column, HEIGHT * row, WIDTH - 1, HEIGHT - 1])
                 # pygame.draw.circle(screen, WHITE, (column * WIDTH + WIDTH // 2, row * HEIGHT + HEIGHT // 2), WIDTH // 3)
 
-    # grid[0][0] = 0
-    # Limit to 60 frames per second
-    # clock.tick(60)
-
-    # Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
-# Be IDLE friendly. If you forget this line, the program will 'hang'
-# on exit.
-# pygame.quit()
